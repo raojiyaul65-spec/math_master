@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'linear_theory_screen.dart';
+import 'linear_examples_screen.dart';
+import 'linear_practice_screen.dart';
+import 'linear_quiz_screen.dart';
 
 class LinearEquationsScreen extends StatelessWidget {
   const LinearEquationsScreen({super.key});
@@ -18,7 +21,6 @@ class LinearEquationsScreen extends StatelessWidget {
           crossAxisSpacing: 15,
           mainAxisSpacing: 15,
           children: [
-
             _buildCard(
               context,
               "📖",
@@ -30,21 +32,21 @@ class LinearEquationsScreen extends StatelessWidget {
               context,
               "✍️",
               "Examples",
-              null,
+              const LinearExamplesScreen(),
             ),
 
             _buildCard(
               context,
               "📝",
               "Practice",
-              null,
+              const LinearPracticeScreen(),
             ),
 
             _buildCard(
               context,
               "❓",
               "Quiz",
-              null,
+              const LinearQuizScreen(),
             ),
           ],
         ),
@@ -53,26 +55,18 @@ class LinearEquationsScreen extends StatelessWidget {
   }
 
   Widget _buildCard(
-      BuildContext context,
-      String emoji,
-      String title,
-      Widget? screen,
-      ) {
+    BuildContext context,
+    String emoji,
+    String title,
+    Widget screen,
+  ) {
     return InkWell(
       borderRadius: BorderRadius.circular(15),
       onTap: () {
-        if (screen != null) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => screen),
-          );
-        } else {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text("$title Coming Soon"),
-            ),
-          );
-        }
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => screen),
+        );
       },
       child: Card(
         elevation: 6,
